@@ -1,5 +1,6 @@
 package ETSMed.API.controller;
 
+import ETSMed.API.infra.security.TokenJWTRecord;
 import ETSMed.API.infra.security.TokenService;
 import ETSMed.API.model.usuario.Usuario;
 import ETSMed.API.model.usuario.UsuarioRecordAuthentication;
@@ -26,8 +27,8 @@ public class AuthenticationController {
     public ResponseEntity efetuarLogin(@RequestBody @Valid UsuarioRecordAuthentication usuarioRecordAuthentication){
         var token = new UsernamePasswordAuthenticationToken(usuarioRecordAuthentication.login(), usuarioRecordAuthentication.senha());
         var authentication = manager.authenticate(token);
-
-        return ResponseEntity.ok(tokenService.gerarToken((Usuario) authentication.getPrincipal()));
+        var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+        return ResponseEntity.ok(new TokenJWTRecord(tokenJWT));
     }
 
 
