@@ -24,13 +24,13 @@ public class Medico {
     @Embedded
     private Endereco endereco;
 
-    public Medico(MedicoRecord medicoRecord) {
-        this.nome = medicoRecord.nome();
-        this.email = medicoRecord.email();
-        this.telefone = medicoRecord.telefone();
-        this.crm = medicoRecord.crm();
-        this.especialidade = medicoRecord.especialidade();
-        this.endereco = new Endereco(medicoRecord.endereco());
+    public Medico(MedicoRecordCadastrar medicoRecordCadastrar) {
+        this.nome = medicoRecordCadastrar.nome();
+        this.email = medicoRecordCadastrar.email();
+        this.telefone = medicoRecordCadastrar.telefone();
+        this.crm = medicoRecordCadastrar.crm();
+        this.especialidade = medicoRecordCadastrar.especialidade();
+        this.endereco = new Endereco(medicoRecordCadastrar.endereco());
         this.ativo = true;
     }
 
