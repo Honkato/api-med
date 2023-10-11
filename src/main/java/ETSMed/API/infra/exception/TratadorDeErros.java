@@ -19,4 +19,9 @@ public class TratadorDeErros {
         var error = e.getFieldError();
         return ResponseEntity.badRequest().body(error);
     }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity tratarRegraDeNegocio(RuntimeException e){
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 }
